@@ -64,7 +64,7 @@ export default function Home() {
                     <li className="ml-8">
                       <a
                         target="_blank"
-                        href="https://github.com/coryetzkorn/twitter-algorithm"
+                        href="https://github.com/mfts/twitter-algorithm-ai"
                         rel="noreferrer"
                         className="text-white"
                       >
@@ -87,7 +87,7 @@ export default function Home() {
                 See how your tweet performs against{" "}
                 <a
                   target="_blank"
-                  href="https://github.com/coryetzkorn/twitter-algorithm/blob/main/lib/algorithm.ts"
+                  href="https://github.com/mfts/twitter-algorithm-ai/blob/main/lib/algorithm.ts"
                   rel="noreferrer"
                   className="text-blue-500 hover:text-blue-600"
                 >
