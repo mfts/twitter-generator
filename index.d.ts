@@ -27,6 +27,5 @@ interface AnalysisResult {
 interface TweetData {
   tweet: string;
   originalTweet: string;
-  sentiment: AnalysisResult;
-  has_media: boolean;
+  tweetMedia: boolean;
 }

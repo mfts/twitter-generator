@@ -13,10 +13,11 @@ export default function Home() {
     validations: [],
   });
   const [tweet, setTweet] = useState<string>("");
+  const [media, setMedia] = useState<boolean>(false);
   useEffect(() => {
-    const rankResponse = rank(tweet);
+    const rankResponse = rank(tweet, media);
     setRanking(rankResponse);
-  }, [tweet]);
+  }, [tweet, media]);
 
   return (
     <>
@@ -101,7 +102,12 @@ export default function Home() {
                     Your Tweet
                   </h2>
                   <div className="max-w-2xl my-8 mx-auto">
-                    <Tweet tweet={tweet} setTweet={setTweet} />
+                    <Tweet
+                      tweet={tweet}
+                      setTweet={setTweet}
+                      media={media}
+                      setMedia={setMedia}
+                    />
                   </div>
                   <div className="md:hidden">
                     <Button
