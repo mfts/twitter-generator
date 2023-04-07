@@ -6,8 +6,12 @@ import { Button } from "@/components/Button";
 import { Tweet } from "@/components/Tweet";
 import { Ranking } from "@/components/Ranking";
 import { rank } from "@/lib/twitter-algorithm";
+import LoadingDots from "@/components/LoadingDots";
+import Github from "@/components/GitHub";
 
 export default function Home() {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [optimizedTweet, setOptimizedTweet] = useState<string>("");
   const [ranking, setRanking] = useState<RankResponse>({
     score: 0,
     validations: [],
@@ -18,6 +22,52 @@ export default function Home() {
     const rankResponse = rank(tweet, media);
     setRanking(rankResponse);
   }, [tweet, media]);
+
+  // prompt for optimizing tweet
+  const prompt = `
+    You are a TwitterGPT, a large language model that generates viral tweets. You are given a prompt of a tweet and must generate a tweet that is more likely to be liked and retweeted than the original tweet.
+    The Twitter algorithm contains boosts and demotions based on what you are writing. News links are positive boosts. Social media links (like facebook.com,instagram.com,snapchat.com,linkedin.com,tiktok.com,reddit.com,joinmastodon.org,gab.com,minds.com,parler.com,mewe.com,telegram.org,signal.org,clubhouse.com) are demotions. If there are social media links, remove them. 
+    Don't add hashtags, ever! Hashtags are bad. Remove all hashtags!
+    Make sure the generated tweet is less than 280 characters, has short sentences that are found in tweets, and base them on this context:
+    ${tweet}
+  `;
+  // function to send tweet to OpenAI and get response
+  const optimizeTweet = async (e: any) => {
+    e.preventDefault();
+    setOptimizedTweet("");
+    setLoading(true);
+    const response = await fetch("/api/optimize", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prompt,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
+    // This data is a ReadableStream
+    const data = response.body;
+    if (!data) {
+      return;
+    }
+
+    const reader = data.getReader();
+    const decoder = new TextDecoder();
+    let done = false;
+
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const chunkValue = decoder.decode(value);
+      setOptimizedTweet((prev) => prev + chunkValue);
+    }
+    setLoading(false);
+  };
 
   return (
     <>
@@ -67,9 +117,10 @@ export default function Home() {
                         target="_blank"
                         href="https://github.com/mfts/twitter-algorithm-ai"
                         rel="noreferrer"
-                        className="text-white"
+                        className="text-white flex max-w-fit items-center justify-center space-x-2"
                       >
-                        Contribute
+                        <Github />
+                        <p>Star on GitHub</p>
                       </a>
                     </li>
                   </ul>
@@ -96,12 +147,28 @@ export default function Home() {
                 </a>
                 .
               </p>
-              <div className="sides grid md:grid-cols-2 gap-16">
+              <div className="grid md:grid-cols-2 gap-16">
                 <div className="side">
-                  <h2 className="text-xl pb-4 border-b border-gray-300">
-                    Your Tweet
-                  </h2>
+                  <div className="flex justify-between items-center pb-4 border-b border-gray-300">
+                    <h2 className="text-xl">Your Tweet</h2>
+                    {tweet && (
+                      <button
+                        onClick={(e) => optimizeTweet(e)}
+                        className="text-sm text-blue-500 hover:text-blue-600"
+                      >
+                        {" "}
+                        Optimize with ChatGPT{" "}
+                      </button>
+                    )}
+                  </div>
                   <div className="max-w-2xl my-8 mx-auto">
+                    {optimizedTweet && (
+                      <div className="mb-4">
+                        <h3 className="text-lg pb-2">Optimized Tweet</h3>
+                        <p className="text-gray-500">{optimizedTweet}</p>
+                      </div>
+                    )}
+
                     <Tweet
                       tweet={tweet}
                       setTweet={setTweet}
@@ -114,9 +181,7 @@ export default function Home() {
                       onClick={() =>
                         window.scrollTo(0, document.body.scrollHeight)
                       }
-                    >
-                      See Ranking
-                    </Button>
+                    ></Button>
                   </div>
                 </div>
                 <div className="side">
