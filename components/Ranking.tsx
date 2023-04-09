@@ -13,7 +13,7 @@ export const Ranking = ({ ranking }: RankingProps) => {
   const negative = ranking.validations.filter(
     (item) => item.type === "negative"
   );
-  const percentage = Math.abs(ranking.score * 25) + "%";
+  const percentage = Math.abs((ranking.score * 100.0) / 2.4) + "%";
   const boost = ranking.score < 1 ? "negative" : "positive";
   const sliderColor = boost === "negative" ? "bg-red-600" : "bg-green-600";
   return (
@@ -32,7 +32,7 @@ export const Ranking = ({ ranking }: RankingProps) => {
           Positive rankings result in greater reach and engagement.
         </p>
         <p className="my-2">
-          Score: <strong>{ranking.score}x</strong>
+          Score: <strong>{parseFloat(ranking.score.toFixed(2))}x</strong>
         </p>
         <ul className="mt-5 p-0">
           {positive.map((item, index) => (
@@ -63,7 +63,7 @@ export const Ranking = ({ ranking }: RankingProps) => {
           height: 20px;
           position: absolute;
           top: 0;
-          left: calc(25% - 1px);
+          left: calc(41.67% - 1px);
           background: #000;
         }
       `}</style>

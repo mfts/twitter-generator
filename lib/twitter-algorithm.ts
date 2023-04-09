@@ -3,8 +3,22 @@
 // Higher score = higher reach
 //
 // Update: the real algorithm!
+// https://github.com/twitter/the-algorithm
 // ---------------------------
 
+// ---------------------------
+// CURRENTLY IMPLEMENTED
+//
+// tweetHasMediaBoost = 2.0,             // tweet has image or video
+// tweetHasNewsUrlBoost = 1.2,           // tweet has news link
+// tweetHasCompetitorUrlBoost = 0.8,     // tweet has competitor link
+// multipleHashtagsOrTrendsBoost = 0.6,  // has multiple hashtags
+// offensiveBoost = 0.1,                 // tweet is offensive
+// ---------------------------
+
+// ---------------------------
+// OTHER FACTORS, NOT IMPLEMENTED
+//
 // retweetCountParams = 20.0             // retweets
 // favCountParams = 30.0,                // likes
 // replyCountParams =  1.0,              // replies
@@ -19,15 +33,11 @@
 // langEnglishTweetBoost = 0.2,          // tweet English, UI non-English
 // langDefaultBoost = 0.02,              // tweet non-English, UI_lang ≠ Tweet_lang
 // unknownLanguageBoost = 0.05,          // tweet not an understandable language
-// √ offensiveBoost = 0.1,                 // tweet is offensive
 // inTrustedCircleBoost = 3.0,           // tweet is from a social circle (I guess followers and friends)
-// √ multipleHashtagsOrTrendsBoost = 0.6,  // has multiple hashtags
 // inDirectFollowBoost = 4.0,            // tweet is from a direct follow
 // tweetHasTrendBoost = 1.1,             // tweet has a trend
 // selfTweetBoost = 2.0,                 // is my own tweet?
-// √ tweetHasMediaBoost = 2.0,          // tweet has image or video
-// √ tweetHasNewsUrlBoost = 1.2,           // tweet has news link
-// √ tweetHasCompetitorUrlBoost = 0.8,     // tweet has competitor link
+// ---------------------------
 
 import { compact } from "lodash";
 
@@ -62,7 +72,6 @@ export function rank(tweet: string, tweetMedia: boolean): RankResponse {
     rules.map((item) => {
       if (item.message) {
         const type = item.score >= 1 ? "positive" : "negative";
-        const operator = type === "positive" ? "boost" : "demotion";
         return {
           message: `${item.message} (${Math.abs(item.score)}x)`,
           type,
