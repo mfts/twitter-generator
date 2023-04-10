@@ -1,6 +1,4 @@
 import classNames from "classnames";
-import { Dispatch, PropsWithChildren, SetStateAction } from "react";
-import { Button } from "@/components/Button";
 
 type RankingProps = {
   ranking: RankResponse;
