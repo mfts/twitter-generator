@@ -15,7 +15,7 @@ export const Tweet = ({ tweet, setTweet, media, setMedia }: TweetProps) => {
           maxLength={280}
           onChange={(e) => setTweet(e.target.value)}
           placeholder="Type your tweet here"
-          className="dark:text-black w-full h-56 p-2 text-lg dark:bg-white border border-gray-300 text-white bg-slate-600 rounded-md shadow-inner md:h-240"
+          className="text-black w-full h-56 p-2 text-lg bg-white border border-gray-300 rounded-md shadow-inner md:h-240"
         />
       </div>
       <div className="flex items-center mt-2">

@@ -29,7 +29,7 @@ export const Ranking = ({ ranking }: RankingProps) => {
           />
         </div>
         <p className="explanation text-gray-600 italic text-sm mt-2">
-          Positive rankings result in greater reach and engagement.
+          Positive scores result in greater reach and engagement.
         </p>
         <p className="my-2">
           Score: <strong>{parseFloat(ranking.score.toFixed(2))}x</strong>
