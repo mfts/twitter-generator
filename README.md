@@ -1,38 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Twitter Algorithm Validator
+
+## Backstory
+
+- On March 24, 2022, Elon Musk tweeted: "[Twitter algorithm should be open source](https://twitter.com/elonmusk/status/1507041396242407424)"
+
+- On April 14, 2022, Elon initiated an acquisition of Twitter. The acquisition was completed on October 27, 2022.
+
+- On April 27, 2022, [Cory Etzkorn](https://twitter.com/coryetzkorn) built a fake Twitter Algorithm: https://github.com/coryetzkorn/twitter-algorithm
+
+- On **March 31, 2023** Twitter released the [official Twitter Algorithm](https://github.com/twitter/the-algorithm). This is a set of rules that governs how Twitter's algorithm determines what content is shown to users in the search and For You tabs.
+
+Today:
+
+- I rebuilt Cory's algorithm to match the official Twitter Algorithm
+- I also added ChatGPT to generate the tweet to maximize the algorithm's score
+
+## Demo
+
+Want to see how your tweet will score? [Try the official algorithm for yourself](https://twitter-algorithm-rank.vercel.app/).
+
+[![Twitter Algorithm Validator Demo](./public/demo.png)](https://twitter-algorithm-rank.vercel.app/)
 
 ## Getting Started
 
-First, run the development server:
+If you would like to run this project locally, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. Clone this repo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   git clone https://github.com/mfts/twitter-algorithm-rank.git
+   ```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+2. Install dependencies
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+   ```bash
+   npm install
+   ```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+3. Copy `.env.example` to `.env` and add `OPENAI_API_KEY` as an environment variable
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   cp .env.example .env
+   ```
 
-## Learn More
+4. Run the development server
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
+If you would like to contribute, please open an issue or a pull request.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Head over to [`twitter-algorithm.ts`](https://github.com/mfts/twitter-algorithm-rank/blob/main/lib/twitter-algorithm.ts) to see the algorithm.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+There are lots of rules from the official Twitter Algorithm yet to be implemented.
+A good summary of the rules can be found [here](https://steventey.com/blog/twitter-algorithm/).
+
+## Attribution 🙌
+
+- [Cory Etzkorn](https://twitter.com/coryetzkorn) for building the [original algorithm](https://github.com/coryetzkorn/twitter-algorithm), which heavily inspired this project
+- [Hassan El Mghari](https://twitter.com/nutlope) for building [Twitterbio](https://github.com/Nutlope/twitterbio), which provided the code for streaming OpenAI results via Vercel Edge Functions.

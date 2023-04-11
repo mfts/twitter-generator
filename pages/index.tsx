@@ -87,7 +87,7 @@ export default function Home() {
         />
         <meta
           property="og:site_name"
-          content="real-twitter-algorithm.vercel.app"
+          content="twitter-algorithm-rank.vercel.app"
         />
         <meta
           property="og:description"
@@ -108,11 +108,11 @@ export default function Home() {
         />
         <meta
           property="og:image"
-          content="https://real-twitter-algorithm.vercel.app/og-image.png"
+          content="https://twitter-algorithm-rank.vercel.app/og-image.png"
         />
         <meta
           name="twitter:image"
-          content="https://real-twitter-algorithm.vercel.app/og-image.png"
+          content="https://twitter-algorithm-rank.vercel.app/og-image.png"
         />
       </Head>
 
