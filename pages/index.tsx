@@ -83,25 +83,25 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="See how your tweet performs against the official open-source Twitter algorithm."
+          content="See how your tweet performs against the official open-source Twitter algorithm and generate better ones."
         />
         <meta property="og:site_name" content="twitter-generator.vercel.app" />
         <meta
           property="og:description"
-          content="See how your tweet performs against the official open-source Twitter algorithm."
+          content="See how your tweet performs against the official open-source Twitter algorithm and generate better ones."
         />
         <meta
           property="og:title"
-          content="Real Twitter Algorithm Rank Validator"
+          content="Twitter Generator and Algorithm Validator"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content="Real Twitter Algorithm Rank Validator"
+          content="Twitter Generator and Algorithm Validator"
         />
         <meta
           name="twitter:description"
-          content="See how your tweet performs against the official open-source Twitter algorithm."
+          content="See how your tweet performs against the official open-source Twitter algorithm and generate better ones."
         />
         <meta
           property="og:image"
