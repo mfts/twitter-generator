@@ -37,7 +37,7 @@ export default function Footer() {
           </svg>
         </Link>
         <Link
-          href="https://github.com/mfts0/twitter-algorithm-ai"
+          href="https://github.com/mfts0/twitter-algorithm-rank"
           className="group"
           aria-label="@mfts0 on GitHub"
         >

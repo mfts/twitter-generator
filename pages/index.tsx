@@ -85,10 +85,7 @@ export default function Home() {
           name="description"
           content="See how your tweet performs against the official open-source Twitter algorithm."
         />
-        <meta
-          property="og:site_name"
-          content="twitter-algorithm-rank.vercel.app"
-        />
+        <meta property="og:site_name" content="twitter-generator.vercel.app" />
         <meta
           property="og:description"
           content="See how your tweet performs against the official open-source Twitter algorithm."
@@ -108,11 +105,11 @@ export default function Home() {
         />
         <meta
           property="og:image"
-          content="https://twitter-algorithm-rank.vercel.app/og-image.png"
+          content="https://twitter-generator.vercel.app/og-image.png"
         />
         <meta
           name="twitter:image"
-          content="https://twitter-algorithm-rank.vercel.app/og-image.png"
+          content="https://twitter-generator.vercel.app/og-image.png"
         />
       </Head>
 
@@ -155,7 +152,7 @@ export default function Home() {
             <div className="max-w-5xl mx-auto">
               <div className="mx-auto">
                 <h1 className="text-6xl text-center font-bold pb-5 text-slate-900">
-                  Algorithm Rank Validator
+                  Twitter Generator
                 </h1>
                 <p className="mb-4 md:mb-4 text-center text-slate-500">
                   See how your tweet performs against <br />
