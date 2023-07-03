@@ -9,6 +9,6 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  console.log("req", req.headers.get["x-vercel-ip-city"]);
+  console.log("req", req.headers["x-vercel-ip-city"]);
   res.status(200).json({ name: "John Doe" });
 }
